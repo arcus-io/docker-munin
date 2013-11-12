@@ -11,5 +11,7 @@ RUN (sed -i 's/^Alias.*/Alias \/ \/var\/cache\/munin\/www\//g' /etc/apache2/site
 RUN (sed -i 's/Allow from localhost.*/Allow from all/g' /etc/apache2/sites-enabled/default)
 RUN (mkdir -p /var/run/munin && chown -R munin:munin /var/run/munin)
 ADD run.sh /usr/local/bin/run
+VOLUME /var/lib/munin
+VOLUME /var/log/munin
 EXPOSE 80
 CMD ["/usr/local/bin/run"]
